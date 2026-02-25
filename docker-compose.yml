@@ -1,0 +1,24 @@
+services:
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: crud_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+  server:
+    build: ./server
+    ports:
+      - "3001:3001"
+    environment:
+      DB_HOST: db
+    depends_on:
+      - db
+
+  client:
+    build: ./client
+    ports:
+      - "5173:5173"
+    stdin_open: true

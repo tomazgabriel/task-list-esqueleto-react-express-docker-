@@ -1,5 +1,10 @@
 #Esqueleto para REACT+EXPRESS+DOCKER
 
+#PENDENTE:
+- PADRÃO MVC
+- ENV
+- DEPLOY (AUTO)
+
 #Projeto simples de task list para eu utilizar como esqueleto futuramente
 
 #Estrutura de diretórios
@@ -27,9 +32,12 @@ Middleware: CORS e Connection Pool
 Dependências:
 	express, mysql2, cors
 	Dockerfile: FROM node:20 para compatibilidade com o Vite
+	ROTAS: GET, POST E DELETE
 
 #Configuração do Frontend (React + Vite + Axios)
 Scripts no package.json: dev: "vite -- host"
+Axios: Esperar a promessa do servidor(Await)
+Re-fetch: Chamar a função fetchTasks() para atualizar o useState
 
 #Cheat Sheet
 Subir o ambiente: sudo docker compose up --build
@@ -42,6 +50,11 @@ Criar Schema do db(terminal): sudo docker exec -it $(sudo docker ps -qf "name=db
 Limpeza se o Docker travar:
 	sudo docker compose down --volumes --remove-orphans
 	sudo docker builder prune -f
+
+Network Error: Configuração do CORS
+SQL Syntax Error: Variável undefined no SQL - Verificar se o id está chegando na rota via req.params.id
+404 Not Found: Cache do Docker - Refazer compose
+Erro 'msg' not defined: Referência fantasma no JSX - Remover variáveis não declaradas no UseState
 
 #Fluxo de Execução
 Init Local: Rode npm init -y no server e npm create vite@latest no client
